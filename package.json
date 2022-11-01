@@ -32,11 +32,12 @@
     "lint:types": "tsc",
     "prepare": "husky install",
     "prepublishOnly": "pnpm build",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "release": "release-it"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "5.1.1",
+    "@vitest/coverage-c8": "0.24.4",
     "@vitest/coverage-istanbul": "0.24.4",
     "dprint": "0.32.2",
     "husky": "8.0.1",

@@ -1,9 +1,9 @@
-export function getDates(start: Date, end: Date): Set<Date> {
+export function getDates(start: Date, end: Date, step = 1): Set<Date> {
   const dates = new Set<Date>()
   const date = new Date(start)
   while (date < end) {
     dates.add(new Date(date))
-    date.setDate(date.getDate() + 1)
+    date.setDate(date.getDate() + step)
   }
   return dates
 }

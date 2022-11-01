@@ -1,5 +1,9 @@
 import * as util from './util'
 
+export function calendar(start: Date, end: Date): Set<Date> {
+  return util.getDates(start, end)
+}
+
 export function datesMTD(date: Date): Set<Date> {
   return util.getDates(new Date(date.getFullYear(), date.getMonth(), 1), date)
 }
