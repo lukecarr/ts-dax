@@ -1,6 +1,6 @@
 {
   "name": "ts-dax",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Data Analysis Expression (DAX) functions implemented in TypeScript",
   "keywords": [
     "dax"
@@ -36,6 +36,7 @@
     "release": "release-it"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "5.1.1",
     "@vitest/coverage-istanbul": "0.24.4",
     "dprint": "0.32.2",
     "husky": "8.0.1",
@@ -63,6 +64,14 @@
     },
     "splitting": true,
     "clean": true
+  },
+  "release-it": {
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits",
+        "infile": "CHANGELOG.md"
+      }
+    }
   },
   "packageManager": "pnpm@7.14.1"
 }
