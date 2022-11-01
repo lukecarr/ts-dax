@@ -1,7 +1,8 @@
-export function getDates(start: Date, end: Date, step = 1): Set<Date> {
+export function getDates(start: Date, end: Date, step = 1, inclusive = false): Set<Date> {
   const dates = new Set<Date>()
   const date = new Date(start)
-  while (date < end) {
+  const upper = inclusive ? new Date(end.getTime() + 1000 * 60 * 60 * 24) : end
+  while (date < upper) {
     dates.add(new Date(date))
     date.setDate(date.getDate() + step)
   }

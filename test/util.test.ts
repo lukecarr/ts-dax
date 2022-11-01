@@ -1,10 +1,10 @@
-import { beforeAll, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import * as util from '../src/util'
 
 describe('getDates()', () => {
   let start: Date, end: Date, dates: Date[]
 
-  beforeAll(() => {
+  beforeEach(() => {
     start = new Date('2022-10-01')
     end = new Date('2022-10-04')
     dates = [...util.getDates(start, end)]
@@ -18,8 +18,14 @@ describe('getDates()', () => {
     expect(dates).toContainEqual(start)
   })
 
-  it('should not include the given end date', () => {
+  it('should not include the given end date if inclusive is provided as false', () => {
+    const dates = [...util.getDates(start, end, 1, false)]
     expect(dates).not.toContainEqual(end)
+  })
+
+  it('should include the given end date if inclusive is provided as true', () => {
+    const dates = [...util.getDates(start, end, 1, true)]
+    expect(dates).toContainEqual(end)
   })
 
   it('should accept a step argument to change the date increment amount', () => {
