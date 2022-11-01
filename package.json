@@ -1,6 +1,6 @@
 {
   "name": "ts-dax",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Data Analysis Expression (DAX) functions implemented in TypeScript",
   "keywords": [
     "dax"
@@ -32,14 +32,17 @@
     "lint:types": "tsc",
     "prepare": "husky install",
     "prepublishOnly": "pnpm build",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "release-it"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "5.1.1",
     "@vitest/coverage-istanbul": "0.24.4",
     "dprint": "0.32.2",
     "husky": "8.0.1",
     "nano-staged": "0.8.0",
     "npm-run-all": "4.1.5",
+    "release-it": "15.5.0",
     "tsup": "6.3.0",
     "typescript": "4.8.4",
     "vite": "3.2.2",
@@ -61,6 +64,14 @@
     },
     "splitting": true,
     "clean": true
+  },
+  "release-it": {
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits",
+        "infile": "CHANGELOG.md"
+      }
+    }
   },
   "packageManager": "pnpm@7.14.1"
 }
