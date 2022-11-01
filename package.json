@@ -1,6 +1,6 @@
 {
   "name": "ts-dax",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Data Analysis Expression (DAX) functions implemented in TypeScript",
   "keywords": [
     "dax"
