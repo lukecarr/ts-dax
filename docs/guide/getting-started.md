@@ -1,6 +1,6 @@
 # Getting started
 
-This section will get you up and running with DAX functions in your TypeScript project in no time at all!
+This section will get you up and running with [DAX][dax] functions in your TypeScript project in no time at all!
 
 ::: info HEADS UP
 ts-dax is not affiliated with nor endorsed by Microsoft in any way. This library is open-source, shared
@@ -27,11 +27,11 @@ import { datesYTD } from 'ts-dax'
 // const { datesYTD } = require('ts-dax')
 
 const ytd = datesYTD(new Date())
-// => All dates from the start of the year to today
+// => Set<Date> containing dates from start of month to today
 ```
 
 ::: tip
-ts-dax is [side-effect free and tree-shakeable](https://bundlephobia.com/package/ts-dax), so all of the
+ts-dax is [side-effect free and tree-shakeable][bundlephobia], so all of the
 implemented functions are exported from the same path.
 
 No need to remember if `datesYTD()` is found in `'ts-dax'`, `'ts-dax/calendar'`, or `'ts-dax/dates'`!
@@ -43,3 +43,6 @@ Now that you have a TypeScript project with ts-dax installed, it's time to dive 
 and discover what DAX functions are at your disposal!
 
 Take a look at the sidebar on the left for the different function categories available with ts-dax!
+
+[dax]: https://learn.microsoft.com/en-us/dax/
+[bundlephobia]: https://bundlephobia.com/package/ts-dax

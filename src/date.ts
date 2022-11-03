@@ -1,4 +1,5 @@
 import * as util from './util'
+import type { DateParam } from './util'
 
 /**
  * Returns a set of contiguous dates.
@@ -7,11 +8,11 @@ import * as util from './util'
  *
  * @param start The start date.
  * @param end The end date.
- * @returns A set of contiguous dates. The range of dates if
- * rom the specified start date to the specified end date,
+ * @returns A set of contiguous dates. The range of dates is
+ * from the specified start date to the specified end date,
  * inclusive of those two dates.
  */
-export function calendar(start: Date, end: Date): Set<Date> {
+export function calendar(start: DateParam, end: DateParam): Set<Date> {
   if (start > end) throw new Error('start date cannot be greater than end date')
   return util.getDates(start, end)
 }
@@ -40,19 +41,23 @@ const intervalSeconds: {
   week: 60 * 60 * 24 * 7,
 }
 
-export function dateDiff(x: Date, y: Date, interval: Interval): number {
+export function dateDiff(x: DateParam, y: DateParam, interval: Interval): number {
+  const xDate = util.resolveParam(x), yDate = util.resolveParam(y)
   switch (interval) {
     case Interval.YEAR:
-      let diff = y.getFullYear() - x.getFullYear()
-      if (x.getMonth() > y.getMonth() || x.getMonth() === y.getMonth() && x.getDate() > y.getDate()) {
+      let diff = yDate.getFullYear() - xDate.getFullYear()
+      if (
+        xDate.getMonth() > yDate.getMonth()
+        || xDate.getMonth() === yDate.getMonth() && xDate.getDate() > yDate.getDate()
+      ) {
         diff--
       }
       return diff
     case Interval.MONTH:
-      let months = (y.getFullYear() - x.getFullYear()) * 12 - x.getMonth() - 1 + y.getMonth()
+      let months = (yDate.getFullYear() - xDate.getFullYear()) * 12 - xDate.getMonth() - 1 + yDate.getMonth()
       return months <= 0 ? 0 : months
     default:
-      const seconds = (y.getTime() - x.getTime()) / 1000
+      const seconds = (yDate.getTime() - xDate.getTime()) / 1000
       return Math.floor(seconds / intervalSeconds[interval])
   }
 }
@@ -62,8 +67,8 @@ export function dateDiff(x: Date, y: Date, interval: Interval): number {
  * @param date A date object.
  * @returns An integer number indicating the day of the month.
  */
-export function day(date: Date): number {
-  return date.getDate()
+export function day(date: DateParam): number {
+  return util.resolveParam(date).getDate()
 }
 
 /**
@@ -71,8 +76,9 @@ export function day(date: Date): number {
  * @param date A date object.
  * @returns A set of dates for the month to date.
  */
-export function datesMTD(date: Date): Set<Date> {
-  return util.getDates(new Date(date.getFullYear(), date.getMonth(), 1), date)
+export function datesMTD(date: DateParam): Set<Date> {
+  const resolvedDate = util.resolveParam(date)
+  return util.getDates(new Date(resolvedDate.getFullYear(), resolvedDate.getMonth(), 1), resolvedDate)
 }
 
 /**
@@ -80,8 +86,8 @@ export function datesMTD(date: Date): Set<Date> {
  * @param date A date object.
  * @returns A set of dates for the quarter to date.
  */
-export function datesQTD(date: Date): Set<Date> {
-  return util.getDates(new Date(date.getFullYear(), util.getQuarter(date) * 3, 1), date)
+export function datesQTD(date: DateParam): Set<Date> {
+  return util.getDates(util.getStartOfQuarter(date), date)
 }
 
 /**
@@ -89,6 +95,7 @@ export function datesQTD(date: Date): Set<Date> {
  * @param date A date object.
  * @returns A set of dates for the year to date.
  */
-export function datesYTD(date: Date): Set<Date> {
-  return util.getDates(new Date(date.getFullYear(), 0, 1), date)
+export function datesYTD(date: DateParam): Set<Date> {
+  const resolvedDate = util.resolveParam(date)
+  return util.getDates(new Date(resolvedDate.getFullYear(), 0, 1), resolvedDate)
 }

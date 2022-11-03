@@ -41,3 +41,23 @@ describe('getQuarter()', () => {
     expect(quarter).toBe(3)
   })
 })
+
+describe('getStartOfQuarter()', () => {
+  it('should return the start of a quarter for a given date', () => {
+    const date = new Date('2022-11-23')
+    const start = util.getStartOfQuarter(date)
+    expect(start).toStrictEqual(new Date('2022-10-01'))
+  })
+})
+
+describe('resolveParam()', () => {
+  it('should convert a date string into a date object', () => {
+    const resolved = util.resolveParam('2022-11-01')
+    expect(resolved).toStrictEqual(new Date('2022-11-01'))
+  })
+
+  it('should convert an integer into a date object', () => {
+    const resolved = util.resolveParam(1661990400000)
+    expect(resolved).toStrictEqual(new Date('2022-09-01'))
+  })
+})

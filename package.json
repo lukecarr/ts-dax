@@ -34,9 +34,10 @@
     "prepublishOnly": "pnpm build",
     "test": "vitest --coverage",
     "release": "release-it",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "pnpm docs:changelog && vitepress dev docs",
+    "docs:build": "pnpm docs:changelog && vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "docs:changelog": "rm docs/changelog.md && cat changelog-template.md >> docs/changelog.md && cat CHANGELOG.md >> docs/changelog.md"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "5.1.1",
