@@ -80,7 +80,7 @@
       }
     }
   },
-  "packageManager": "pnpm@7.14.1",
+  "packageManager": "pnpm@7.14.2",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
