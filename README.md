@@ -23,9 +23,9 @@ pnpm add -E ts-dax
 
 ```ts
 // ESM / TypeScript
-import { datesMTD } from 'crls'
+import { datesMTD } from 'ts-dax'
 // or CommonJS
-// const {} = require("crls");
+// const {} = require('ts-dax')
 
 const dates = datesMTD(new Date())
 // => Set<Date> containing dates from start of month to today
