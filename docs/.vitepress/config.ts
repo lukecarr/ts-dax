@@ -39,6 +39,17 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Aggregation functions',
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: 'averagex',
+            link: '/guide/aggregation/averagex',
+          },
+        ],
+      },
+      {
         text: 'Date and time functions',
         collapsible: true,
         collapsed: true,

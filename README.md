@@ -31,6 +31,8 @@ const dates = datesMTD(new Date())
 // => Set<Date> containing dates from start of month to today
 ```
 
+**View full documentation at [ts-dax.js.org](https://ts-dax.js.org)!**
+
 ## 📃 License
 
 ts-dax is licensed under the [`MIT License`](LICENSE).

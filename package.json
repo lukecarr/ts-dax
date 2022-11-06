@@ -10,82 +10,40 @@
   "repository": "lukecarr/ts-dax",
   "author": "Luke Carr <me+oss@carr.sh>",
   "license": "MIT",
-  "type": "module",
   "sideEffects": false,
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/types.d.ts",
   "files": [
     "dist"
   ],
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    }
-  },
   "scripts": {
-    "build": "tsup",
-    "fmt": "dprint fmt",
-    "lint": "run-p lint:*",
-    "lint:format": "dprint check",
-    "lint:types": "tsc",
-    "prepare": "husky install",
-    "prepublishOnly": "pnpm build",
+    "watch": "parcel watch",
+    "build": "rm -rf dist; parcel build --no-source-maps",
     "test": "vitest --coverage",
-    "release": "release-it",
-    "docs:dev": "pnpm docs:changelog && vitepress dev docs",
-    "docs:build": "pnpm docs:changelog && vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "docs:changelog": "rm docs/changelog.md && cat changelog-template.md >> docs/changelog.md && cat CHANGELOG.md >> docs/changelog.md"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "5.1.1",
-    "@vitest/coverage-c8": "0.24.5",
-    "@vitest/coverage-istanbul": "0.24.5",
-    "dprint": "0.32.2",
-    "husky": "8.0.1",
-    "nano-staged": "0.8.0",
-    "npm-run-all": "4.1.5",
-    "release-it": "15.5.0",
-    "tsup": "6.4.0",
-    "typescript": "4.8.4",
-    "vite": "3.2.2",
-    "vitepress": "1.0.0-alpha.26",
-    "vitest": "0.24.5",
-    "vue": "3.2.41"
+    "@parcel/packager-ts": "latest",
+    "@parcel/transformer-typescript-types": "latest",
+    "@vitest/coverage-c8": "latest",
+    "dprint": "latest",
+    "parcel": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitepress": "latest",
+    "vitest": "latest",
+    "vue": "latest"
   },
-  "nano-staged": {
-    "*.{js,ts,md,json,yaml,yml}": "dprint fmt"
-  },
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "dts": {
-      "resolve": true
-    },
-    "splitting": true,
-    "clean": true
-  },
-  "release-it": {
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "conventionalcommits",
-        "infile": "CHANGELOG.md"
-      }
-    }
-  },
-  "packageManager": "pnpm@7.14.1",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@algolia/client-search"
+        "@algolia/client-search",
+        "@parcel/core"
       ]
     }
-  }
+  },
+  "packageManager": "pnpm@7.14.2"
 }
