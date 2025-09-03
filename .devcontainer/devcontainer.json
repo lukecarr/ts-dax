@@ -1,6 +1,6 @@
 {
   "name": "Node.js & TypeScript",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
   "postCreateCommand": "npm i -g pnpm && pnpm install",
   "remoteUser": "node",
   "extensions": [
